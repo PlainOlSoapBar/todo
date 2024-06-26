@@ -13,7 +13,7 @@ const props = defineProps({
     }
 })
 
-defineEmits(['toggle-complete'])
+defineEmits(["toggle-complete", "edit-todo"])
 </script>
 
 <template>
@@ -41,6 +41,7 @@ defineEmits(['toggle-complete'])
                 icon="ph:pencil-fill"
                 color="#C8B793"
                 width="25" 
+                @click="$emit('edit-todo', index)"
             />
             <Icon
                 icon="ph:trash"

@@ -20,6 +20,10 @@ const createTodo = (todo) => {
 const toggleTodoComplete = (todoPosition) => {
   todoList.value[todoPosition].isCompleted = !todoList.value[todoPosition].isCompleted;
 }
+
+const toggleEditTodo = (todoPosition) => {
+  todoList.value[todoPosition].isEditing = !todoList.value[todoPosition].isEditing;
+}
 </script>
 
 <template>
@@ -32,6 +36,7 @@ const toggleTodoComplete = (todoPosition) => {
         :todo="todo"
         :index="index"
         @toggle-complete="toggleTodoComplete"
+        @edit-todo="toggleEditTodo"
       />
     </ul>
     <p class="todos-message" v-else>
