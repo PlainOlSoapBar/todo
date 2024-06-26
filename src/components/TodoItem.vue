@@ -13,7 +13,7 @@ const props = defineProps({
     }
 })
 
-defineEmits(["toggle-complete", "edit-todo"])
+defineEmits(["toggle-complete", "edit-todo", "update-todo"])
 </script>
 
 <template>
@@ -24,7 +24,12 @@ defineEmits(["toggle-complete", "edit-todo"])
           @input="$emit('toggle-complete', index)"
         />
         <div class="todo">
-            <input v-if="todo.isEditing" type="text" :value="todo.todo">
+            <input
+              v-if="todo.isEditing"
+              type="text"
+              :value="todo.todo"
+              @input="$emit('update-todo', $event.target.value, index)"
+            >
             <span v-else :class="{'completed-todo': todo.isCompleted}">
                 {{ todo.todo }}
             </span>
@@ -35,6 +40,7 @@ defineEmits(["toggle-complete", "edit-todo"])
                 icon="ph:check-circle"
                 color="#41b080"
                 width="25" 
+                @click="$emit('edit-todo', index)"
             />
             <Icon 
                 v-else
