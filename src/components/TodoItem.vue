@@ -14,15 +14,29 @@ const props = defineProps({
     <li>
         <input type="checkbox" :checked="todo.isCompleted" />
         <div class="todo">
-            <input type="text" :value="todo.todo">
-            <span>
+            <input v-if="todo.isEditing" type="text" :value="todo.todo">
+            <span v-else>
                 {{ todo.todo }}
             </span>
         </div>
         <div class="todo-actions">
-            <Icon icon="ph:check-circle" color="green" width="25" />
-            <Icon icon="ph:pencil-fill" color="#C8B793" width="25" />
-            <Icon icon="ph:trash" color="#914A4E" width="25" />
+            <Icon
+                v-if="todo.isEditing"
+                icon="ph:check-circle"
+                color="#41b080"
+                width="25" 
+            />
+            <Icon 
+                v-else
+                icon="ph:pencil-fill"
+                color="#C8B793"
+                width="25" 
+            />
+            <Icon
+                icon="ph:trash"
+                color="#914A4E"
+                width="25" 
+            />
         </div>
     </li>
 </template>
